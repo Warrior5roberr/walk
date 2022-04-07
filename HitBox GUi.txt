@@ -1,0 +1,581 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Close = Instance.new("TextButton")
+local Open2 = Instance.new("ScreenGui")
+local Open = Instance.new("TextButton")
+local FightingGui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local Cre = Instance.new("TextLabel")
+local HitBox = Instance.new("TextBox")
+local Red = Instance.new("TextBox")
+local Green = Instance.new("TextBox")
+local Blue = Instance.new("TextBox")
+local TextLabel = Instance.new("TextLabel")
+local Transparency = Instance.new("TextBox")
+local Material = Instance.new("TextBox")
+local Tutorial = Instance.new("TextButton")
+local Hitbox2 = Instance.new("TextButton")
+
+local Target00dr = Instance.new("Frame")
+local Target009 = Instance.new("TextButton")
+local Target0Player = Instance.new("TextBox")
+local Execute = Instance.new("TextButton")
+local Blue1 = Instance.new("TextBox")
+local Green1 = Instance.new("TextBox")
+local Red1 = Instance.new("TextBox")
+local HitBox1 = Instance.new("TextBox")
+local Transparency1 = Instance.new("TextBox")
+
+local Rejoin = Instance.new("TextButton")
+
+--Properties:
+
+FightingGui.Name = "FightingGui"
+FightingGui.Parent = game.CoreGui
+FightingGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+
+
+
+Rejoin.Name = "Rejoin"
+Rejoin.Parent = main
+Rejoin.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Rejoin.Position = UDim2.new(1.00366306, 0, 0.457013577, 0)
+Rejoin.Size = UDim2.new(0, 64, 0, 53)
+Rejoin.Font = Enum.Font.SourceSans
+Rejoin.Text = "Rejoin"
+Rejoin.TextColor3 = Color3.fromRGB(0, 0, 0)
+Rejoin.TextScaled = true
+Rejoin.TextSize = 14.000
+Rejoin.TextWrapped = true
+Rejoin.MouseButton1Down:Connect(function()
+	game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+
+
+
+
+local lp = game:FindService("Players").LocalPlayer
+
+local function gplr(String)
+	local Found = {}
+	local strl = String:lower()
+	if strl == "all" then
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			table.insert(Found,v)
+		end
+	elseif strl == "others" then
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			if v.Name ~= lp.Name then
+				table.insert(Found,v)
+			end
+		end 
+	elseif strl == "me" then
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			if v.Name == lp.Name then
+				table.insert(Found,v)
+			end
+		end 
+	else
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			if v.Name:lower():sub(1, #String) == String:lower() then
+				table.insert(Found,v)
+			end
+		end 
+	end
+	return Found 
+end
+
+
+
+
+
+Target00dr.Name = "Target00dr"
+Target00dr.Parent = FightingGui
+Target00dr.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Target00dr.Position = UDim2.new(0.647936642, 0, 0.0406249985, 0)
+Target00dr.Size = UDim2.new(0, 159, 0, 282)
+Target00dr.Active = true
+Target00dr.Draggable = true
+Target00dr.Visible = false
+
+Target009.Name = "Target009"
+Target009.Parent = Target00dr
+Target009.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Target009.Position = UDim2.new(0.63739723, 0, 0, 0)
+Target009.Size = UDim2.new(0, 57, 0, 50)
+Target009.Font = Enum.Font.SourceSans
+Target009.Text = "X"
+Target009.TextColor3 = Color3.fromRGB(0, 0, 0)
+Target009.TextScaled = true
+Target009.TextSize = 14.000
+Target009.TextWrapped = true
+Target009.MouseButton1Down:Connect(function()
+	Target00dr.Visible = false
+end)
+
+Target0Player.Name = "Target0Player"
+Target0Player.Parent = Target00dr
+Target0Player.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Target0Player.Position = UDim2.new(0.0541243628, 0, 0.648936152, 0)
+Target0Player.Size = UDim2.new(0, 140, 0, 50)
+Target0Player.Font = Enum.Font.SourceSans
+Target0Player.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Target0Player.PlaceholderText = "Player name here"
+Target0Player.Text = ""
+Target0Player.TextColor3 = Color3.fromRGB(0, 0, 0)
+Target0Player.TextScaled = true
+Target0Player.TextSize = 14.000
+Target0Player.TextWrapped = true
+
+Blue1.Name = "Blue1"
+Blue1.Parent = Target00dr
+Blue1.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+Blue1.Position = UDim2.new(0.697917223, 0, 0.236345112, 0)
+Blue1.Size = UDim2.new(0, 37, 0, 31)
+Blue1.Font = Enum.Font.SourceSans
+Blue1.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Blue1.PlaceholderText = "Blue"
+Blue1.Text = ""
+Blue1.TextColor3 = Color3.fromRGB(0, 0, 0)
+Blue1.TextScaled = true
+Blue1.TextSize = 14.000
+Blue1.TextWrapped = true
+
+Green1.Name = "Green1"
+Green1.Parent = Target00dr
+Green1.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+Green1.Position = UDim2.new(0.37382558, 0, 0.236345112, 0)
+Green1.Size = UDim2.new(0, 37, 0, 31)
+Green1.Font = Enum.Font.SourceSans
+Green1.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Green1.PlaceholderText = "Green"
+Green1.Text = ""
+Green1.TextColor3 = Color3.fromRGB(0, 0, 0)
+Green1.TextScaled = true
+Green1.TextSize = 14.000
+Green1.TextWrapped = true
+
+Red1.Name = "Red1"
+Red1.Parent = Target00dr
+Red1.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Red1.Position = UDim2.new(0.0531814694, 0, 0.236345112, 0)
+Red1.Size = UDim2.new(0, 37, 0, 31)
+Red1.Font = Enum.Font.SourceSans
+Red1.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Red1.PlaceholderText = "Red"
+Red1.Text = ""
+Red1.TextColor3 = Color3.fromRGB(0, 0, 0)
+Red1.TextScaled = true
+Red1.TextSize = 14.000
+Red1.TextWrapped = true
+
+HitBox1.Name = "HitBox1"
+HitBox1.Parent = Target00dr
+HitBox1.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+HitBox1.Position = UDim2.new(0.0518816113, 0, 0.405084938, 0)
+HitBox1.Size = UDim2.new(0, 60, 0, 53)
+HitBox1.Font = Enum.Font.SourceSans
+HitBox1.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+HitBox1.PlaceholderText = "Hitbox"
+HitBox1.Text = ""
+HitBox1.TextColor3 = Color3.fromRGB(0, 0, 0)
+HitBox1.TextScaled = true
+HitBox1.TextSize = 14.000
+HitBox1.TextWrapped = true
+
+Transparency1.Name = "Transparency1"
+Transparency1.Parent = Target00dr
+Transparency1.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Transparency1.Position = UDim2.new(0.542777777, 0, 0.408783436, 0)
+Transparency1.Size = UDim2.new(0, 60, 0, 51)
+Transparency1.Font = Enum.Font.SourceSans
+Transparency1.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Transparency1.PlaceholderText = "Transparency"
+Transparency1.Text = ""
+Transparency1.TextColor3 = Color3.fromRGB(0, 0, 0)
+Transparency1.TextScaled = true
+Transparency1.TextSize = 14.000
+Transparency1.TextWrapped = true
+
+Execute.Name = "Execute"
+Execute.Parent = Target00dr
+Execute.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Execute.Position = UDim2.new(0.0541243628, 0, 0.858394742, 0)
+Execute.Size = UDim2.new(0, 139, 0, 33)
+Execute.Font = Enum.Font.SourceSans
+Execute.Text = "Execute"
+Execute.TextColor3 = Color3.fromRGB(0, 0, 0)
+Execute.TextScaled = true
+Execute.TextSize = 14.000
+Execute.TextWrapped = true
+Execute.MouseButton1Down:Connect(function()
+	local Target = gplr(Target0Player.Text)
+	if Target[1] then
+		Target = Target[1]
+		game:GetService('RunService').RenderStepped:connect(function()
+			Target.Character.HumanoidRootPart.Size = Vector3.new(HitBox1.Text,HitBox1.Text,HitBox1.Text)
+			Target.Character.HumanoidRootPart.Transparency = Transparency1.Text
+			Target.Character.HumanoidRootPart.Color = Color3.new(Red1.Text,Green1.Text,Blue1.Text)
+			Target.Character.HumanoidRootPart.Material = "Neon"
+			Target.Character.HumanoidRootPart.CanCollide = false
+		end)
+	else
+		notif("Invalid player")
+	end
+end)
+
+
+
+
+
+
+Hitbox2.Name = "Hitbox 2"
+Hitbox2.Parent = main
+Hitbox2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Hitbox2.Position = UDim2.new(1.00000012, 0, 0.76018101, 0)
+Hitbox2.Size = UDim2.new(0, 64, 0, 53)
+Hitbox2.Font = Enum.Font.SourceSans
+Hitbox2.Text = "Open 2"
+Hitbox2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Hitbox2.TextScaled = true
+Hitbox2.TextSize = 14.000
+Hitbox2.TextWrapped = true
+Hitbox2.MouseButton1Down:Connect(function()
+	Target00dr.Visible = true
+end)
+
+Tutorial.Name = "Tutorial"
+Tutorial.Parent = main
+Tutorial.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Tutorial.Position = UDim2.new(0.402930409, 0, 0.665158391, 0)
+Tutorial.Size = UDim2.new(0, 138, 0, 50)
+Tutorial.Font = Enum.Font.SourceSans
+Tutorial.Text = "Tutorial"
+Tutorial.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tutorial.TextScaled = true
+Tutorial.TextSize = 14.000
+Tutorial.TextWrapped = true
+Tutorial.MouseButton1Down:Connect(function()
+	local ScreenGui1tu = Instance.new("ScreenGui")
+	local Frame1tu = Instance.new("Frame")
+	local TextLabel = Instance.new("TextLabel")
+	local Red1tu = Instance.new("TextBox")
+	local Green1tu = Instance.new("TextBox")
+	local Blue1tu = Instance.new("TextBox")
+	local Colors1tu = Instance.new("TextLabel")
+	local HitBox1tu = Instance.new("TextBox")
+	local Size = Instance.new("TextLabel")
+	local Transparency1tu = Instance.new("TextBox")
+	local TextLabel1 = Instance.new("TextLabel")
+	local Material1tu = Instance.new("TextBox")
+	local TextButton1tu = Instance.new("TextButton")
+
+	ScreenGui1tu.Name = "ScreenGui1tu"
+	ScreenGui1tu.Parent = game.CoreGui
+	ScreenGui1tu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Frame1tu.Name = "Frame1tu"
+	Frame1tu.Parent = ScreenGui1tu
+	Frame1tu.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Frame1tu.Position = UDim2.new(0.033675041, 0, 0.09375, 0)
+	Frame1tu.Size = UDim2.new(0, 446, 0, 260)
+
+	TextLabel.Parent = Frame1tu
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.Size = UDim2.new(0, 200, 0, 73)
+	TextLabel.Font = Enum.Font.SourceSans
+	TextLabel.Text = "Use numbers to change color and size and transparency"
+	TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.TextScaled = true
+	TextLabel.TextSize = 14.000
+	TextLabel.TextWrapped = true
+
+	Red1tu.Name = "Red1tu"
+	Red1tu.Parent = Frame1tu
+	Red1tu.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Red1tu.Position = UDim2.new(0.506011665, 0, 0.0803167447, 0)
+	Red1tu.Size = UDim2.new(0, 37, 0, 31)
+	Red1tu.Font = Enum.Font.SourceSans
+	Red1tu.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	Red1tu.PlaceholderText = "5"
+	Red1tu.Text = ""
+	Red1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Red1tu.TextSize = 14.000
+
+	Green1tu.Name = "Green1tu"
+	Green1tu.Parent = Frame1tu
+	Green1tu.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	Green1tu.Position = UDim2.new(0.631687224, 0, 0.0803167447, 0)
+	Green1tu.Size = UDim2.new(0, 37, 0, 31)
+	Green1tu.Font = Enum.Font.SourceSans
+	Green1tu.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	Green1tu.PlaceholderText = "5"
+	Green1tu.Text = ""
+	Green1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Green1tu.TextSize = 14.000
+
+	Blue1tu.Name = "Blue1tu"
+	Blue1tu.Parent = Frame1tu
+	Blue1tu.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+	Blue1tu.Position = UDim2.new(0.754521012, 0, 0.0803167447, 0)
+	Blue1tu.Size = UDim2.new(0, 37, 0, 31)
+	Blue1tu.Font = Enum.Font.SourceSans
+	Blue1tu.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	Blue1tu.PlaceholderText = "5"
+	Blue1tu.Text = ""
+	Blue1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Blue1tu.TextSize = 14.000
+
+	Colors1tu.Name = "Colors1tu"
+	Colors1tu.Parent = Frame1tu
+	Colors1tu.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Colors1tu.Position = UDim2.new(0.506011665, 0, 0.25, 0)
+	Colors1tu.Size = UDim2.new(0, 147, 0, 42)
+	Colors1tu.Font = Enum.Font.SourceSans
+	Colors1tu.Text = "Colors"
+	Colors1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Colors1tu.TextScaled = true
+	Colors1tu.TextSize = 14.000
+	Colors1tu.TextWrapped = true
+
+	HitBox1tu.Name = "HitBox1tu"
+	HitBox1tu.Parent = Frame1tu
+	HitBox1tu.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	HitBox1tu.Position = UDim2.new(0.0518816002, 0, 0.334162891, 0)
+	HitBox1tu.Size = UDim2.new(0, 65, 0, 50)
+	HitBox1tu.Font = Enum.Font.SourceSans
+	HitBox1tu.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	HitBox1tu.PlaceholderText = "Hitbox"
+	HitBox1tu.Text = ""
+	HitBox1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	HitBox1tu.TextScaled = true
+	HitBox1tu.TextSize = 14.000
+	HitBox1tu.TextWrapped = true
+
+	Size.Name = "Size"
+	Size.Parent = Frame1tu
+	Size.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Size.Position = UDim2.new(0.0246636774, 0, 0.557692349, 0)
+	Size.Size = UDim2.new(0, 88, 0, 45)
+	Size.Font = Enum.Font.SourceSans
+	Size.Text = "Size"
+	Size.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Size.TextScaled = true
+	Size.TextSize = 14.000
+	Size.TextWrapped = true
+
+	Transparency1tu.Name = "Transparency1tu"
+	Transparency1tu.Parent = Frame1tu
+	Transparency1tu.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Transparency1tu.Position = UDim2.new(0.274393648, 0, 0.330769241, 0)
+	Transparency1tu.Size = UDim2.new(0, 83, 0, 50)
+	Transparency1tu.Font = Enum.Font.SourceSans
+	Transparency1tu.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	Transparency1tu.PlaceholderText = "Transparency"
+	Transparency1tu.Text = ""
+	Transparency1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Transparency1tu.TextScaled = true
+	Transparency1tu.TextSize = 14.000
+	Transparency1tu.TextWrapped = true
+
+	TextLabel1.Name = "TextLabel1"
+	TextLabel1.Parent = Frame1tu
+	TextLabel1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel1.Position = UDim2.new(0.504484296, 0, 0.449999988, 0)
+	TextLabel1.Size = UDim2.new(0, 148, 0, 62)
+	TextLabel1.Font = Enum.Font.SourceSans
+	TextLabel1.Text = "use letters to change Material Put the word Neon to work best"
+	TextLabel1.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel1.TextScaled = true
+	TextLabel1.TextSize = 14.000
+	TextLabel1.TextWrapped = true
+
+	Material1tu.Name = "Material1tu"
+	Material1tu.Parent = Frame1tu
+	Material1tu.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Material1tu.Position = UDim2.new(0.596724629, 0, 0.730543017, 0)
+	Material1tu.Size = UDim2.new(0, 65, 0, 50)
+	Material1tu.Font = Enum.Font.SourceSans
+	Material1tu.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	Material1tu.PlaceholderText = "Material"
+	Material1tu.Text = ""
+	Material1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Material1tu.TextScaled = true
+	Material1tu.TextSize = 14.000
+	Material1tu.TextWrapped = true
+
+	TextButton1tu.Name = "TextButton1tu"
+	TextButton1tu.Parent = Frame1tu
+	TextButton1tu.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	TextButton1tu.Position = UDim2.new(0.885234058, 0, 0, 0)
+	TextButton1tu.Size = UDim2.new(0, 51, 0, 43)
+	TextButton1tu.Font = Enum.Font.SourceSans
+	TextButton1tu.Text = "X"
+	TextButton1tu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextButton1tu.TextScaled = true
+	TextButton1tu.TextSize = 14.000
+	TextButton1tu.TextWrapped = true
+	TextButton1tu.MouseButton1Down:Connect(function()
+		ScreenGui1tu:Destroy()
+	end)
+end)
+
+Material.Name = "Material"
+Material.Parent = main
+Material.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Material.Position = UDim2.new(0.0586080588, 0, 0.665158391, 0)
+Material.Size = UDim2.new(0, 65, 0, 50)
+Material.Font = Enum.Font.SourceSans
+Material.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Material.PlaceholderText = "Material"
+Material.Text = ""
+Material.TextColor3 = Color3.fromRGB(0, 0, 0)
+Material.TextScaled = true
+Material.TextSize = 14.000
+Material.TextWrapped = true
+
+Transparency.Name = "Transparency"
+Transparency.Parent = main
+Transparency.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Transparency.Position = UDim2.new(0.0586080588, 0, 0.384615391, 0)
+Transparency.Size = UDim2.new(0, 65, 0, 50)
+Transparency.Font = Enum.Font.SourceSans
+Transparency.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Transparency.PlaceholderText = "Transparency"
+Transparency.Text = ""
+Transparency.TextColor3 = Color3.fromRGB(0, 0, 0)
+Transparency.TextScaled = true
+Transparency.TextSize = 14.000
+Transparency.TextWrapped = true
+
+Open2.Name = "Tools"
+Open2.Parent = game.CoreGui
+Open2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Open.Name = "Open"
+Open.Parent = Open2
+Open.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Open.Position = UDim2.new(0, 0, 0.451871663, 0)
+Open.Size = UDim2.new(0, 78, 0, 50)
+Open.Font = Enum.Font.SourceSans
+Open.Text = "Open"
+Open.TextColor3 = Color3.fromRGB(250, 0, 0)
+Open.TextScaled = true
+Open.TextSize = 14.000
+Open.TextWrapped = true
+Open.MouseButton1Down:Connect(function()
+	main.Visible = true
+	Open.Visible = false
+end)
+
+Close.Name = "Close"
+Close.Parent = main
+Close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Close.Position = UDim2.new(1, 0, -0.226244345, 0)
+Close.Size = UDim2.new(0, 60, 0, 50)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "X"
+Close.TextColor3 = Color3.fromRGB(0, 0, 0)
+Close.TextScaled = true
+Close.TextSize = 14.000
+Close.TextWrapped = true
+Close.MouseButton1Down:Connect(function()
+	main.Visible = false
+	Open.Visible = true
+end)
+
+main.Parent = FightingGui
+main.Active = true
+main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+main.Position = UDim2.new(0.073011741, 0, 0.237333342, 0)
+main.Size = UDim2.new(0, 273, 0, 221)
+main.Draggable = true
+main.Visible = false
+
+Cre.Name = "Cre"
+Cre.Parent = main
+Cre.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Cre.Position = UDim2.new(0, 0, -0.226244345, 0)
+Cre.Size = UDim2.new(0, 273, 0, 50)
+Cre.Font = Enum.Font.SourceSans
+Cre.Text = "Script made by WarriorRoberr"
+Cre.TextColor3 = Color3.fromRGB(0, 0, 0)
+Cre.TextScaled = true
+Cre.TextSize = 14.000
+Cre.TextWrapped = true
+
+HitBox.Name = "HitBox"
+HitBox.Parent = main
+HitBox.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+HitBox.Position = UDim2.new(0.0586080588, 0, 0.0995475128, 0)
+HitBox.Size = UDim2.new(0, 65, 0, 50)
+HitBox.Font = Enum.Font.SourceSans
+HitBox.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+HitBox.PlaceholderText = "Hitbox"
+HitBox.Text = ""
+HitBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+HitBox.TextScaled = true
+HitBox.TextSize = 14.000
+HitBox.TextWrapped = true
+
+Red.Name = "Red"
+Red.Parent = main
+Red.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Red.Position = UDim2.new(0.485832304, 0, 0.0995475128, 0)
+Red.Size = UDim2.new(0, 37, 0, 31)
+Red.Font = Enum.Font.SourceSans
+Red.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Red.PlaceholderText = "Red"
+Red.Text = ""
+Red.TextColor3 = Color3.fromRGB(0, 0, 0)
+Red.TextSize = 14.000
+
+Green.Name = "Green"
+Green.Parent = main
+Green.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+Green.Position = UDim2.new(0.665319502, 0, 0.0995475128, 0)
+Green.Size = UDim2.new(0, 37, 0, 31)
+Green.Font = Enum.Font.SourceSans
+Green.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Green.PlaceholderText = "Green"
+Green.Text = ""
+Green.TextColor3 = Color3.fromRGB(0, 0, 0)
+Green.TextSize = 14.000
+
+TextLabel.Parent = main
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.Position = UDim2.new(0.47118023, 0, 0.325791866, 0)
+TextLabel.Size = UDim2.new(0, 140, 0, 37)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Colors"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+Blue.Name = "Blue"
+Blue.Parent = main
+Blue.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+Blue.Position = UDim2.new(0.837480664, 0, 0.0995475128, 0)
+Blue.Size = UDim2.new(0, 37, 0, 31)
+Blue.Font = Enum.Font.SourceSans
+Blue.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+Blue.PlaceholderText = "Blue"
+Blue.Text = ""
+Blue.TextColor3 = Color3.fromRGB(0, 0, 0)
+Blue.TextSize = 14.000
+game:GetService('RunService').RenderStepped:connect(function()
+	for i,v in next, game:GetService('Players'):GetPlayers() do
+		if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+			v.Character.HumanoidRootPart.Size = Vector3.new(HitBox.Text,HitBox.Text,HitBox.Text)
+			v.Character.HumanoidRootPart.Transparency = Transparency.Text
+			v.Character.HumanoidRootPart.Color = Color3.new(Red.Text,Green.Text,Blue.Text)
+			v.Character.HumanoidRootPart.Material = Material.text
+			v.Character.HumanoidRootPart.CanCollide = false
+		end
+	end
+end)
